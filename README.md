@@ -9,6 +9,6 @@ Install Xampp and then start the apache and mysql server
 Make sure to turn on the cookies in the browser settings 
 
 Login and register 
-![Alt text]( "Optional title")
+![Alt text]( spotify/assets/images/Demo/demo.png "Optional title")
 
 
