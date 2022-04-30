@@ -1,3 +1,55 @@
+<?php
+$songQuery = mysqli_query($con , "SELECT id FROM songs ORDER BY RAND() LIMIT 10");
+
+$resultArray = array();
+
+while($row=mysqli_fetch_array($songQuery)){
+	array_push($resultArray,$row['id']);
+}
+ $jsonArray = json_encode($resultArray);
+
+?>
+
+<script>
+
+	 $(document).ready(function(){
+		currentPlayList = <?php echo $jsonArray;  ?>;
+		audioElement = new Audio();
+		setTrack(currentPlayList[0],currentPlayList,false);
+	 });
+
+	 function setTrack(trackId,newPlaylist,play){
+		$.post("includes/handlers/ajax/getSongJson.php",{ songId: trackId},function(data){
+			var track = JSON.parse(data);
+				$(".trackName span").text(track.title);
+				$.post("includes/handlers/ajax/getArtistJson.php",{ artistId: track.artist},function(data){
+					var artist = JSON.parse(data);
+					console.log(track);
+					$(".artistName span").text(artist.name);
+				});
+				console.log(track);
+				audioElement.setTrack(track.path);
+				audioElement.play();
+		});
+		if(play){
+			audioElement.audio.autoplay=true;
+		audioElement.play();
+		}
+		
+	 }
+	 function playSong(){
+		 $(".controlButton.play").hide();
+		 $(".controlButton.pause").show();
+		 audioElement.play();
+	 }
+	 function pauseSong(){
+		$(".controlButton.pause").hide();
+		 $(".controlButton.play").show();
+		 audioElement.pause();
+	 }
+
+</script>
+
 <div id="nowPlayingBarContainer">
 
 		<div id="nowPlayingBar">
@@ -9,10 +61,10 @@
 					</span>
 					<div class="trackInfo">
 						<span class="trackName">
-							<span>Pratham Dhiman</span>
+							<span></span>
 						</span>
 						<span class="artistName">
-							<span>Terminator</span>
+							<span></span>
 						</span>
 					</div>
 				</div>
@@ -26,10 +78,10 @@
 							<button class="controlButton previous" title="Previous Button">
 								<img src="assets/images/icons/previous.png" alt="Previous">
 							</button>
-							<button class="controlButton play" title="Play Button">
+							<button class="controlButton play" title="Play Button" onclick="playSong()">
 								<img src="assets/images/icons/play.png" alt="Play">
 							</button>
-							<button class="controlButton pause" title="Pause Button" style="display:none;">
+							<button class="controlButton pause" title="Pause Button" style="display:none;" onclick="pauseSong()">
 								<img src="assets/images/icons/pause.png" alt="Pause">
 							</button>
 							<button class="controlButton next" title="Next Button">

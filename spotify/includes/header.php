@@ -1,6 +1,8 @@
 <?php
 include("includes/config.php");
-
+include("includes/classes/Artist.php");
+include("includes/classes/Album.php");
+include("includes/classes/Song.php");
 //session_destroy(); LOGOUT
 
 if (isset($_SESSION['userLoggedIn'])) {
@@ -16,10 +18,12 @@ else {
 <head>
 	<title>Welcome to Slotify!</title>
 	<link rel="stylesheet" href="assets/css/Index.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script src="assets/js/script.js"></script>
 </head>
 
 <body>
-	
+
 	<div class="mainContainer">
 		<div id="topContainer">
 
