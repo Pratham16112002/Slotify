@@ -14,4 +14,10 @@ Login and Register
 Table structure for the project
 ![Alt text]( spotify/assets/images/Demo/Table-structure.png "Tables In Backend")
 
+User Album
+![Alt text]( spotify/assets/images/Demo/Album-musicPlayer.png "User Album")
+
+Current Album
+![Alt text]( spotify/assets/images/Demo/Album.png "User Album")
+
 
