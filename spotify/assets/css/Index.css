@@ -91,7 +91,7 @@ body{
 .progress{
     background-color:#a0a0a0;
     height:4px;
-    width:30%;
+    width:0%;
     border-radius:2px;
 }
 .playBackBar .progressBar{
@@ -104,7 +104,7 @@ body{
     float:left;
     background-size:cover;
 }
-.trackInfo{
+#nowPlaying .trackInfo{
     display:table;
 }
 #nowPlayingLeft .trackInfo .trackName{
